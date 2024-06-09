@@ -1,6 +1,7 @@
 import '../assets/styles/global.scss';
 import '../assets/styles/style.scss';
 import './form.scss';
+import apiArticles from '../api/api-articles.js';
 
 const form = document.querySelector('#form');
 const elDeleteBtn = form.querySelector('#delete_btn');
@@ -22,6 +23,7 @@ form.addEventListener('submit', (event) => {
 
   if (formIsValid(object)) {
     const json = JSON.stringify(object);
+    apiArticles.sendArticle(json);
     if (messageError) {
       messageError.remove();
     }
