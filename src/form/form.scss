@@ -7,12 +7,12 @@
 }
 
 .form {
-    width: 700px;
-    padding: 4rem;
-    box-shadow: var(--box-shadow);
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
+  width: 700px;
+  padding: 4rem;
+  box-shadow: var(--box-shadow);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
 
   &__title {
     padding-bottom: 2rem;
@@ -30,9 +30,15 @@
       color: var(--color-accent);
       font-weight: 700;
       margin-bottom: 1rem;
+
+      &::after {
+        content: '*';
+        margin: 0.1rem;
+      }
     }
 
-    input, textarea {
+    input,
+    textarea {
       border: 1px solid var(--color-divider);
       padding: 1rem;
       font-size: 1.6rem;
@@ -53,4 +59,9 @@
   & div:last-child {
     text-align: right;
   }
+}
+
+.text-error {
+  color: var(--color-error);
+  margin-bottom: 1rem;
 }

@@ -29,23 +29,44 @@
         </nav>
       </header>
       <main class="content">
-        <form action="" class="form">
+        <form action="" class="form" id="form" novalidate>
           <h2 class="form__title">Ajouter un article</h2>
           <div class="form__group">
             <label for="author">Auteur</label>
-            <input type="text" id="author" name="author" required autocomplete="off" autofocus />
+            <input
+              type="text"
+              id="author"
+              name="author"
+              required
+              autocomplete="off"
+              autofocus
+            />
           </div>
           <div class="form__group">
             <label for="category">Catégorie</label>
-            <input type="text" id="category" name="category" required autocomplete="off" />
+            <input
+              type="text"
+              id="category"
+              name="category"
+              required
+              autocomplete="off"
+            />
           </div>
           <div class="form__group">
             <label for="content">Article</label>
-            <textarea name="content" id="content" required autocomplete="off"></textarea>
+            <textarea
+              name="content"
+              id="content"
+              required
+              autocomplete="off"
+            ></textarea>
           </div>
+          <div id="div-error"></div>
           <div>
-            <button class="btn btn-secondary">Annuler</button>
-            <button class="btn btn-primary">Sauvegarder</button>
+            <button class="btn btn-secondary" id="delete_btn">Annuler</button>
+            <button class="btn btn-primary" id="save_btn" type="submit">
+              Sauvegarder
+            </button>
           </div>
         </form>
       </main>
