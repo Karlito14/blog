@@ -1,0 +1,56 @@
+.content {
+  grid-area: content;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+    width: 700px;
+    padding: 4rem;
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+
+  &__title {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  &__group {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-size: 1.8rem;
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    input, textarea {
+      border: 1px solid var(--color-divider);
+      padding: 1rem;
+      font-size: 1.6rem;
+      outline: none;
+      border-radius: 5px;
+
+      &:focus {
+        border-color: var(--color-accent);
+      }
+    }
+
+    textarea {
+      resize: none;
+      height: 20rem;
+    }
+  }
+
+  & div:last-child {
+    text-align: right;
+  }
+}

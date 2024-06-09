@@ -9,11 +9,48 @@
       href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
       rel="stylesheet"
     />
-
-    <title>Blog | Formulaire</title>
+    <title>Mon Blog</title>
   </head>
   <body>
-    <a href="../index.html">Accueil</a>
+    <div class="container">
+      <header class="header">
+        <a href="./index.html"><h1 class="header__logo">Mon Blog</h1></a>
+        <nav class="header__nav">
+          <ul>
+            <li>
+              <a href="../index.html" class="header__nav__link">Accueil</a>
+            </li>
+            <li>
+              <a href="./form.html" class="header__nav__link active"
+                >Créer un article</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main class="content">
+        <form action="" class="form">
+          <h2 class="form__title">Ajouter un article</h2>
+          <div class="form__group">
+            <label for="author">Auteur</label>
+            <input type="text" id="author" name="author" required autocomplete="off" autofocus />
+          </div>
+          <div class="form__group">
+            <label for="category">Catégorie</label>
+            <input type="text" id="category" name="category" required autocomplete="off" />
+          </div>
+          <div class="form__group">
+            <label for="content">Article</label>
+            <textarea name="content" id="content" required autocomplete="off"></textarea>
+          </div>
+          <div>
+            <button class="btn btn-secondary">Annuler</button>
+            <button class="btn btn-primary">Sauvegarder</button>
+          </div>
+        </form>
+      </main>
+      <footer class="footer">© Mon Blog</footer>
+    </div>
     <script type="module" src="./form.js"></script>
   </body>
 </html>
