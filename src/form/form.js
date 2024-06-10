@@ -1,6 +1,3 @@
-import '../assets/styles/global.scss';
-import '../assets/styles/style.scss';
-import './form.scss';
 import apiArticles from '../api/api-articles.js';
 
 const form = document.querySelector('#form');

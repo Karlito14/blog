@@ -9,6 +9,9 @@
       href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./assets/styles/global.scss">
+    <link rel="stylesheet" href="./assets/styles/style.scss">
+    <link rel="stylesheet" href="./index.scss">
     <title>Mon Blog</title>
   </head>
   <body>
@@ -22,7 +25,22 @@
           </ul>
         </nav>
       </header>
-      <main class="content">main</main>
+      <main class="content">
+        <ul class="list">
+          <li>
+            <article class="article">
+              <img class="article__img" src="./assets/images/user.jpg" alt="Profil">
+              <h2 class="article__title">Titre de l'article</h2>
+              <h3 class="article__author">José Lucio</h3>
+              <p class="article__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quis natus voluptates quaerat obcaecati omnis?</p>
+              <div class="article__actions">
+                <button class="btn btn-primary" id="updateBtn">Modifier</button>
+                <button class="btn btn-secondary" id="deleteBtn">Supprimer</button>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </main>
       <footer class="footer">© Mon Blog</footer>
     </div>
     <script type="module" src="./index.js"></script>

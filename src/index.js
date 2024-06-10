@@ -1,4 +1,4 @@
-import './assets/styles/global.scss';
-import './assets/styles/style.scss';
-import './index.scss';
+import apiArticles from './api/api-articles.js';
 
+const articles = await apiArticles.getArticles();
+console.log(articles);

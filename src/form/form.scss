@@ -4,9 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--color-divider);
 }
 
 .form {
+  background-color: white;
   width: 700px;
   padding: 4rem;
   box-shadow: var(--box-shadow);

@@ -3,11 +3,19 @@ class ApiArticles {
     this.BASE_URL = url;
   }
 
-  async getArticles() {}
+  async getArticles() {
+    try {
+      const promesse = await fetch(`${this.BASE_URL}/articles`);
+      const resultat = await promesse.json();
+      return resultat;
+    } catch (error) {
+      console.error('Erreur :', erreur);
+    }
+  }
 
   async sendArticle(json) {
     try {
-      const promesse = await fetch(`${this.BASE_URL}/article`, {
+      const promesse = await fetch(`${this.BASE_URL}/articles`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
