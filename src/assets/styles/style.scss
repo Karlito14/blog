@@ -1,3 +1,6 @@
+@use './media_queries';
+@use './variables';
+
 .container {
   display: grid;
   min-height: 100vh;
@@ -13,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 
     &__logo {
       color: white;
@@ -20,6 +24,10 @@
     }
 
     &__nav {
+      @include media_queries.sm {
+        display: none;
+      }
+
       ul {
         display: flex;
       }
@@ -73,5 +81,36 @@
     background-color: white;
     color: var(--color-error);
     border: 1px solid var(--color-error);
+  }
+}
+
+.menu-icon {
+  display: none;
+
+  @include media_queries.sm {
+    display: block;
+  }
+
+  i {
+    color: white;
+    cursor: pointer;
+    font-size: 3rem;
+  }
+}
+
+#mobileMenu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  ul {
+    li {
+      margin-bottom: 1rem;
+      a {
+        color: var(--color-text);
+      }
+    }
   }
 }

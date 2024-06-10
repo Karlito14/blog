@@ -1,3 +1,5 @@
+@use '../assets/styles/media_queries';
+
 .content {
   grid-area: content;
   padding: 2rem;
@@ -9,12 +11,17 @@
 
 .form {
   background-color: white;
-  width: 700px;
+  max-width: 700px;
+  width: 100%;
   padding: 4rem;
   box-shadow: var(--box-shadow);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+
+  @include media_queries.xs {
+    padding: 2rem;
+  }
 
   &__title {
     padding-bottom: 2rem;
@@ -60,6 +67,10 @@
 
   & div:last-child {
     text-align: right;
+
+    @include media_queries.xs {
+      text-align: center;
+    }
   }
 }
 

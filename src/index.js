@@ -1,7 +1,6 @@
 import apiArticles from './api/api-articles.js';
 
 const articles = await apiArticles.getArticles();
-console.log(articles);
 const elList = document.querySelector('.list');
 const template = document.querySelector('#template_article');
 

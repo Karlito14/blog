@@ -12,7 +12,7 @@
   max-width: 800px;
 
   li {
-    margin: 5rem 0;
+    margin: 5rem 0 2rem;
     box-shadow: var(--box-shadow);
   }
 }
@@ -52,7 +52,7 @@
   }
 
   &__actions {
-    padding-top: 1rem;
+    padding-top: 2rem;
     width: 100%;
     text-align: right;
     border-top: 1px solid var(--color-divider);
