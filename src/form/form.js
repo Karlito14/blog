@@ -25,6 +25,7 @@ form.addEventListener('submit', (event) => {
       messageError.remove();
     }
     console.log(json);
+    window.location = '../index.html';
   } else {
     if (!messageError) {
       messageError = document.createElement('p');

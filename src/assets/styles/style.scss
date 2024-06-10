@@ -68,4 +68,10 @@
     color: var(--color-primary);
     border: 1px solid var(--color-primary);
   }
+
+  &-danger {
+    background-color: white;
+    color: var(--color-error);
+    border: 1px solid var(--color-error);
+  }
 }
