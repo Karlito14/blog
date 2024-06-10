@@ -5,13 +5,41 @@ console.log(articles);
 const elList = document.querySelector('.list');
 const template = document.querySelector('#template_article');
 
-articles.forEach((article) => {
+if (Array.isArray(articles)) {
+  displayArticles(articles);
+} else if (typeof articles === 'object') {
+  displaySingleArticle(articles);
+}
+
+function displayArticles(articles) {
+  elList.innerHTML = '';
+
+  articles.forEach((article) => {
+    const clone = createElement(article, template);
+    const btnDelete = clone.children[0].querySelector('#delete_btn');
+
+    btnDelete.addEventListener('click', async () => {
+      await apiArticles.deleteArticle(article._id);
+      const index = findIndex(articles, article._id);
+      articles.splice(index, 1);
+      displayArticles(articles);
+    });
+
+    elList.append(clone);
+  });
+}
+
+function displaySingleArticle(article) {
   const clone = createElement(article, template);
   const btnDelete = clone.children[0].querySelector('#delete_btn');
-  btnDelete.setAttribute('data-id', article._id);
-  console.log(btnDelete);
+
+  btnDelete.addEventListener('click', async () => {
+    await apiArticles.deleteArticle(article._id);
+    elList.innerHTML = '';
+  });
+
   elList.append(clone);
-});
+}
 
 function createElement(article, template) {
   const clone = template.content.cloneNode(true);
@@ -26,4 +54,8 @@ function createElement(article, template) {
   content.textContent = article.content;
 
   return clone;
+}
+
+function findIndex(articles, id) {
+  return articles.findIndex((article) => article._id === id);
 }
