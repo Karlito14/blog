@@ -31,7 +31,6 @@ icon.addEventListener('click', (event) => {
 window.addEventListener('click', (event) => {
   event.stopPropagation();
   if (menuNavOpen) {
-    const mobileMenu = document.querySelector('#mobileMenu');
     mobileMenu.remove();
     menuNavOpen = !menuNavOpen;
   }
