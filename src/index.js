@@ -4,6 +4,8 @@ const articles = await apiArticles.getArticles();
 const elList = document.querySelector('.list');
 const template = document.querySelector('#template_article');
 
+console.log(articles)
+
 if (Array.isArray(articles)) {
   displayArticles(articles);
 } else if (typeof articles === 'object') {
@@ -47,7 +49,13 @@ function createElement(article, template) {
   title.textContent = article.title;
 
   const author = clone.querySelector('#author');
-  author.textContent = article.author;
+  const optionsDate = {
+    weekday : 'long',
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  }
+  author.textContent = `${article.author} - ${(new Date(article.createdAt)).toLocaleDateString('fr-FR', optionsDate)}`;
 
   const content = clone.querySelector('#content');
   content.textContent = article.content;
