@@ -1,8 +1,14 @@
 import apiArticles from '../api/api-articles.js';
 
 const form = document.querySelector('#form');
-const elDeleteBtn = form.querySelector('#delete_btn');
+const elBtnCancel = form.querySelector('#delete_btn');
 const divError = form.querySelector('#div-error');
+const inputTitle = document.querySelector('input[id="title"]');
+const inputAuthor = document.querySelector('input[id="author"]');
+const inputCategory = document.querySelector('input[id="category"]');
+const inputContent = document.querySelector('textarea[id="content"]');
+
+const inputs = [inputTitle, inputAuthor, inputCategory, inputContent];
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -24,8 +30,7 @@ form.addEventListener('submit', (event) => {
     if (messageError) {
       messageError.remove();
     }
-    console.log(json);
-    window.location = '../index.html';
+    location.assign('../index.html');
   } else {
     if (!messageError) {
       messageError = document.createElement('p');
@@ -36,6 +41,10 @@ form.addEventListener('submit', (event) => {
       divError.append(messageError);
     }
   }
+});
+
+elBtnCancel.addEventListener('click', () => {
+  inputs.forEach((input) => (input.value = ''));
 });
 
 const formIsValid = (object) => {
