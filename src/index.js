@@ -2,6 +2,7 @@ import apiArticles from './api/api-articles.js';
 
 const articles = await apiArticles.getArticles();
 const elList = document.querySelector('.list');
+const ElCategoryList = document.querySelector('.aside__list');
 const template = document.querySelector('#template_article');
 const optionsDate = {
   weekday: 'long',
@@ -10,11 +11,10 @@ const optionsDate = {
   year: 'numeric',
 };
 
-const ElCategoryList = document.querySelector('.aside__list');
-
 console.log(articles);
 
 initPage(articles);
+createMenuCategory(articles);
 
 function initPage(articleList) {
   if (Array.isArray(articleList)) {
@@ -31,8 +31,6 @@ function displayArticles(articles) {
     const clone = createElement(article, template);
     const btnDelete = clone.children[0].querySelector('#delete_btn');
     const btnUpdate = clone.children[0].querySelector('#update_btn');
-
-    itemCategory(article.category);
 
     btnDelete.addEventListener('click', async () => {
       await apiArticles.deleteArticle(article._id);
@@ -78,15 +76,42 @@ function createElement(article, template) {
   return clone;
 }
 
-function itemCategory(category) {
-  let li = document.querySelector(`#item-${category}`);
-  if (!li) {
-    li = document.createElement('li');
-    li.setAttribute('id', `item-${category}`);
-    li.setAttribute('class', 'item-category')
-    li.textContent = `- ${category}`;
+function createMenuCategory(articleList) {
+  const categories = retrieveCategories(articleList);
+
+  for (const category in categories) {
+    const li = document.createElement('li');
+    li.setAttribute('class', 'item-category');
+    li.textContent = `- ${category} (${categories[category]})`;
     ElCategoryList.append(li);
+
+    li.addEventListener('click', () => {
+      if (category === 'Tous') {
+        initPage(articles);
+      } else {
+        const filterArticles = articleList.filter(
+          (article) => article.category === category
+        );
+        initPage(filterArticles);
+      }
+    });
   }
+}
+
+function retrieveCategories(articleList) {
+  const categories = articleList.reduce(
+    (acc, curr) => {
+      if (acc[curr.category]) {
+        acc[curr.category]++;
+      } else {
+        acc[curr.category] = 1;
+      }
+      return acc;
+    },
+    { Tous: articleList.length }
+  );
+
+  return categories;
 }
 
 function findIndex(articles, id) {

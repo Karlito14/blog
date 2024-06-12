@@ -2,7 +2,7 @@
 
 .content {
   grid-area: content;
-  padding: 2rem 10rem;
+  padding: 2rem 7rem;
   background-color: var(--color-divider);
   display: flex;
   justify-content: space-between;
@@ -64,8 +64,14 @@
 }
 
 .aside {
-  padding: 5rem 0rem;
-  margin: 0 5rem;
+  background-color: white;
+  margin: 5rem;
+  padding: 2rem;
+  padding-right: 5rem;
+  align-self: flex-start;
+  width: 250px;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
 
   &__title {
     margin-bottom: 2rem;
@@ -75,6 +81,12 @@
     .item-category {
       cursor: pointer;
       margin: 1rem 0;
+      transition: all 0.3s;
+      font-weight: 500;
+
+      &:hover {
+        color: var(--color-primary);
+      }
     }
   }
 }
