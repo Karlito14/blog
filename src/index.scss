@@ -5,7 +5,7 @@
   padding: 2rem 7rem;
   background-color: var(--color-divider);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .list {
@@ -89,4 +89,10 @@
       }
     }
   }
+
+  .active {
+    font-weight: 700;
+    color: var(--color-primary);
+  }
 }
+
