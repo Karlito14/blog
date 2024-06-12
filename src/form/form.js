@@ -13,7 +13,7 @@ const inputs = [inputTitle, inputAuthor, inputCategory, inputContent];
 const id = new URLSearchParams(location.search).get('id');
 
 if (id) {
-  getArticle(id);
+  initForm(id);
 }
 
 form.addEventListener('submit', (event) => {
@@ -34,7 +34,7 @@ form.addEventListener('submit', (event) => {
     if (messageError) {
       messageError.remove();
     }
-    
+
     location.assign('../index.html');
   } else {
     if (!messageError) {
@@ -52,11 +52,13 @@ elBtnCancel.addEventListener('click', () => {
   inputs.forEach((input) => (input.value = ''));
 });
 
-async function getArticle(id) {
+async function initForm(id) {
   const article = await apiArticles.getArticle(id);
-  console.log(article);
-  inputTitle.value = article.title;
-  inputAuthor.value = article.author;
-  inputCategory.value = article.category;
-  inputContent.value = article.content;
+  
+  if (article) {
+    inputTitle.value = article.title;
+    inputAuthor.value = article.author;
+    inputCategory.value = article.category;
+    inputContent.value = article.content;
+  }
 }

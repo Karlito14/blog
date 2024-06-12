@@ -44,7 +44,7 @@ class ApiArticles {
   async updateArticle(json, id) {
     try {
       const promesse = await fetch(`${this.BASE_URL}/${id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },

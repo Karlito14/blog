@@ -2,10 +2,10 @@
 
 .content {
   grid-area: content;
-  padding: 2rem;
+  padding: 2rem 10rem;
   background-color: var(--color-divider);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .list {
@@ -61,5 +61,20 @@
       text-align: center;
     }
   }
+}
 
+.aside {
+  padding: 5rem 0rem;
+  margin: 0 5rem;
+
+  &__title {
+    margin-bottom: 2rem;
+  }
+  
+  &__list {
+    .item-category {
+      cursor: pointer;
+      margin: 1rem 0;
+    }
+  }
 }

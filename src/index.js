@@ -10,12 +10,18 @@ const optionsDate = {
   year: 'numeric',
 };
 
+const ElCategoryList = document.querySelector('.aside__list');
+
 console.log(articles);
 
-if (Array.isArray(articles)) {
-  displayArticles(articles);
-} else if (typeof articles === 'object') {
-  displaySingleArticle(articles);
+initPage(articles);
+
+function initPage(articleList) {
+  if (Array.isArray(articleList)) {
+    displayArticles(articleList);
+  } else if (typeof articleList === 'object') {
+    displaySingleArticle(articleList);
+  }
 }
 
 function displayArticles(articles) {
@@ -25,6 +31,8 @@ function displayArticles(articles) {
     const clone = createElement(article, template);
     const btnDelete = clone.children[0].querySelector('#delete_btn');
     const btnUpdate = clone.children[0].querySelector('#update_btn');
+
+    itemCategory(article.category);
 
     btnDelete.addEventListener('click', async () => {
       await apiArticles.deleteArticle(article._id);
@@ -68,6 +76,17 @@ function createElement(article, template) {
   content.textContent = article.content;
 
   return clone;
+}
+
+function itemCategory(category) {
+  let li = document.querySelector(`#item-${category}`);
+  if (!li) {
+    li = document.createElement('li');
+    li.setAttribute('id', `item-${category}`);
+    li.setAttribute('class', 'item-category')
+    li.textContent = `- ${category}`;
+    ElCategoryList.append(li);
+  }
 }
 
 function findIndex(articles, id) {
