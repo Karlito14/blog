@@ -3,8 +3,14 @@ import apiArticles from './api/api-articles.js';
 const articles = await apiArticles.getArticles();
 const elList = document.querySelector('.list');
 const template = document.querySelector('#template_article');
+const optionsDate = {
+  weekday: 'long',
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+};
 
-console.log(articles)
+console.log(articles);
 
 if (Array.isArray(articles)) {
   displayArticles(articles);
@@ -18,12 +24,17 @@ function displayArticles(articles) {
   articles.forEach((article) => {
     const clone = createElement(article, template);
     const btnDelete = clone.children[0].querySelector('#delete_btn');
+    const btnUpdate = clone.children[0].querySelector('#update_btn');
 
     btnDelete.addEventListener('click', async () => {
       await apiArticles.deleteArticle(article._id);
       const index = findIndex(articles, article._id);
       articles.splice(index, 1);
       displayArticles(articles);
+    });
+
+    btnUpdate.addEventListener('click', async () => {
+      location.assign(`/form/form.html?id=${article._id}`);
     });
 
     elList.append(clone);
@@ -49,13 +60,9 @@ function createElement(article, template) {
   title.textContent = article.title;
 
   const author = clone.querySelector('#author');
-  const optionsDate = {
-    weekday : 'long',
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric'
-  }
-  author.textContent = `${article.author} - ${(new Date(article.createdAt)).toLocaleDateString('fr-FR', optionsDate)}`;
+  author.textContent = `${article.author} - ${new Date(
+    article.createdAt
+  ).toLocaleDateString('fr-FR', optionsDate)}`;
 
   const content = clone.querySelector('#content');
   content.textContent = article.content;

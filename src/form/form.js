@@ -1,4 +1,5 @@
 import apiArticles from '../api/api-articles.js';
+import { formData, formIsValid } from '../assets/js/utils.js';
 
 const form = document.querySelector('#form');
 const elBtnCancel = form.querySelector('#delete_btn');
@@ -7,29 +8,33 @@ const inputTitle = document.querySelector('input[id="title"]');
 const inputAuthor = document.querySelector('input[id="author"]');
 const inputCategory = document.querySelector('input[id="category"]');
 const inputContent = document.querySelector('textarea[id="content"]');
-
 const inputs = [inputTitle, inputAuthor, inputCategory, inputContent];
+
+const id = new URLSearchParams(location.search).get('id');
+
+if (id) {
+  getArticle(id);
+}
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const formData = new FormData(form);
   let messageError = document.querySelector('#message-error');
 
-  const object = {};
-
-  for (const entry of formData) {
-    let value = entry[1].trim();
-    value = value.replaceAll('  ', ' ');
-    value = value[0]?.toUpperCase() + value.slice(1);
-    object[entry[0]] = value;
-  }
+  const object = formData(form);
 
   if (formIsValid(object)) {
     const json = JSON.stringify(object);
-    apiArticles.sendArticle(json);
+
+    if (id) {
+      apiArticles.updateArticle(json, id);
+    } else {
+      apiArticles.sendArticle(json);
+    }
+
     if (messageError) {
       messageError.remove();
     }
+    
     location.assign('../index.html');
   } else {
     if (!messageError) {
@@ -47,11 +52,11 @@ elBtnCancel.addEventListener('click', () => {
   inputs.forEach((input) => (input.value = ''));
 });
 
-const formIsValid = (object) => {
-  for (const property in object) {
-    if (object[property] === 'undefined') {
-      return false;
-    }
-  }
-  return true;
-};
+async function getArticle(id) {
+  const article = await apiArticles.getArticle(id);
+  console.log(article);
+  inputTitle.value = article.title;
+  inputAuthor.value = article.author;
+  inputCategory.value = article.category;
+  inputContent.value = article.content;
+}
