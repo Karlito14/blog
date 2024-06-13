@@ -46,6 +46,34 @@
       </main>
       <footer class="footer">© Mon Blog</footer>
     </div>
+    <dialog
+      id="dialog"
+      role="dialog"
+      aria-labelledby="dialog-title"
+      aria-describedby="dialog-desc"
+      aria-modal="true"
+      aria-hidden="true"
+      tabindex="-1"
+      class="c-dialog"
+    >
+      <div role="document" class="c-dialog__box">
+        <button
+          type="button"
+          aria-label="Fermer"
+          title="Fermer cette fenêtre modale"
+          data-dismiss="dialog"
+        >
+          X
+        </button>
+
+        <p id="dialog-desc"></p>
+        <div class="dialog-actions">
+          <button class="btn-yes btn btn-danger">Oui</button>
+          <button class="btn-no btn btn-primary">Non</button>
+        </div>
+      </div>
+    </dialog>
+
     <script src="./assets/js/menu-nav.js"></script>
     <script type="module" src="./index.js"></script>
 
@@ -62,7 +90,15 @@
           <p class="article__content" id="content"></p>
           <div class="article__actions">
             <button class="btn btn-primary" id="update_btn">Modifier</button>
-            <button class="btn btn-danger" id="delete_btn">Supprimer</button>
+            <button
+              class="btn btn-danger"
+              id="delete_btn"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="dialog"
+            >
+              Supprimer
+            </button>
           </div>
         </article>
       </li>
