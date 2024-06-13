@@ -1,10 +1,8 @@
 import apiArticles from './api/api-articles.js';
-import { Modal } from './assets/js/modal.js';
 
 let articles = await apiArticles.getArticles();
 const elList = document.querySelector('.list');
 const elCategoryList = document.querySelector('.aside__list');
-const elmodal = document.querySelector('#dialog');
 const template = document.querySelector('#template_article');
 const optionsDate = {
   weekday: 'long',
@@ -32,13 +30,13 @@ function displayArticles(articles) {
     const btnDelete = clone.children[0].querySelector('#delete_btn');
     const btnUpdate = clone.children[0].querySelector('#update_btn');
 
-    const modale = new Modal(
-      btnDelete,
-      elmodal,
-      "Etes-vous sur de vouloir supprimer l'article ?"
-    );
-
-    modale.handleEvents();
+    btnDelete.addEventListener('click', async () => {
+      await apiArticles.deleteArticle(article._id);
+      const index = findIndex(articles, article._id);
+      articles.splice(index, 1);
+      displayArticles(articles);
+      displayMenuCategory(articles);
+    });
 
     btnUpdate.addEventListener('click', async () => {
       location.assign(`/form/form.html?id=${article._id}`);
@@ -66,6 +64,7 @@ function createElement(article, template) {
 }
 
 function displayMenuCategory(articleList) {
+  elCategoryList.innerHTML = '';
   const articles = articleList.sort((a, b) => {
     return a.category.localeCompare(b.category);
   });
