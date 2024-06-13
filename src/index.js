@@ -38,9 +38,7 @@ function displayArticles(articles) {
       "Etes-vous sur de vouloir supprimer l'article ?"
     );
 
-    btnDelete.addEventListener('click', async () => {
-      modale.openModal();
-    });
+    modale.handleEvents();
 
     btnUpdate.addEventListener('click', async () => {
       location.assign(`/form/form.html?id=${article._id}`);

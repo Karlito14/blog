@@ -62,14 +62,15 @@
           aria-label="Fermer"
           title="Fermer cette fenêtre modale"
           data-dismiss="dialog"
+          id="close-modale"
         >
           X
         </button>
 
         <p id="dialog-desc"></p>
         <div class="dialog-actions">
-          <button class="btn-yes btn btn-danger">Oui</button>
-          <button class="btn-no btn btn-primary">Non</button>
+          <button id="btn-yes" class="btn btn-danger">Oui</button>
+          <button data-dismiss="dialog" class="btn btn-primary">Non</button>
         </div>
       </div>
     </dialog>
