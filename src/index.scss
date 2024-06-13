@@ -64,20 +64,27 @@
 }
 
 .aside {
-  background-color: white;
   margin: 5rem;
-  padding: 2rem;
-  padding-right: 5rem;
   align-self: flex-start;
-  width: 250px;
-  border-radius: 5px;
-  box-shadow: var(--box-shadow);
+  min-width: 200px;
 
-  &__title {
+  #date {
     margin-bottom: 2rem;
+    width: 100%;
+    padding: 1rem 1rem;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    outline: none;
   }
-  
+
   &__list {
+    background-color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+
     .item-category {
       cursor: pointer;
       margin: 1rem 0;
@@ -95,4 +102,3 @@
     color: var(--color-primary);
   }
 }
-

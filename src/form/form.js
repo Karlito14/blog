@@ -1,5 +1,5 @@
 import apiArticles from '../api/api-articles.js';
-import { formData, formIsValid } from '../assets/js/utils.js';
+import { formData, formIsValid } from '../assets/js/form.js';
 
 const form = document.querySelector('#form');
 const elBtnCancel = form.querySelector('#delete_btn');

@@ -1,6 +1,6 @@
 import apiArticles from './api/api-articles.js';
 
-const articles = await apiArticles.getArticles();
+let articles = await apiArticles.getArticles();
 const elList = document.querySelector('.list');
 const ElCategoryList = document.querySelector('.aside__list');
 const template = document.querySelector('#template_article');
@@ -11,15 +11,15 @@ const optionsDate = {
   year: 'numeric',
 };
 
+if (!Array.isArray(articles)) {
+  articles = [articles];
+}
+
 initPage(articles);
 displayMenuCategory(articles);
 
 function initPage(articleList) {
-  if (Array.isArray(articleList)) {
-    displayArticles(articleList);
-  } else if (typeof articleList === 'object') {
-    displaySingleArticle(articleList);
-  }
+  displayArticles(articleList);
 }
 
 function displayArticles(articles) {
@@ -45,18 +45,6 @@ function displayArticles(articles) {
   });
 }
 
-function displaySingleArticle(article) {
-  const clone = createElement(article, template);
-  const btnDelete = clone.children[0].querySelector('#delete_btn');
-
-  btnDelete.addEventListener('click', async () => {
-    await apiArticles.deleteArticle(article._id);
-    elList.innerHTML = '';
-  });
-
-  elList.append(clone);
-}
-
 function createElement(article, template) {
   const clone = template.content.cloneNode(true);
 
@@ -75,16 +63,23 @@ function createElement(article, template) {
 }
 
 function displayMenuCategory(articleList) {
-  const categories = retrieveCategories(articleList);
+  const articles = articleList.sort((a, b) => {
+    return a.category.localeCompare(b.category);
+  });
+  const categories = retrieveCategories(articles);
 
   for (const category in categories) {
     const li = document.createElement('li');
     li.setAttribute('class', 'item-category');
     li.setAttribute('data-id', category);
-    li.textContent = `- ${category} (${categories[category]})`;
+    li.textContent = `${category} (${categories[category]})`;
     ElCategoryList.append(li);
   }
 
+  handleEventCategory(articleList);
+}
+
+function handleEventCategory(articleList) {
   const elementsCategory = document.querySelectorAll('.item-category');
 
   elementsCategory.forEach((category) => {
